@@ -1,0 +1,921 @@
+.g-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-family: "Google Sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+.g-btn-primary {
+  background-color: #1a73e8;
+  color: #ffffff;
+}
+.g-btn-primary:hover {
+  background-color: #1557b0;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+.g-btn-accent {
+  background-color: #34a853;
+  color: #ffffff;
+}
+.g-btn-accent:hover {
+  background-color: #2e9549;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+.g-btn-outlined {
+  background-color: transparent;
+  border: 1px solid #dadce0;
+  color: #3c4043;
+}
+.g-btn-outlined:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.g-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #dadce0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.g-card:hover {
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+  transform: translateY(-2px);
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.g-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #dadce0;
+  padding: 12px 0;
+}
+.g-navbar .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.g-navbar .brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.g-navbar .brand-logo .logo-img {
+  height: 40px;
+  width: auto;
+  border-radius: 4px;
+}
+.g-navbar .brand-logo .logo-text {
+  font-family: "Google Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #202124;
+}
+.g-navbar .brand-logo .logo-text .accent-dot {
+  color: #1a73e8;
+}
+.g-navbar .nav-menu {
+  display: flex;
+  gap: 24px;
+}
+.g-navbar .nav-menu .nav-link {
+  text-decoration: none;
+  color: #3c4043;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.g-navbar .nav-menu .nav-link:hover, .g-navbar .nav-menu .nav-link.active {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+.visual-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 16px;
+}
+.visual-card .hero-svg {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+.visual-card .floating-pill {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #34a853;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+.visual-card .floating-pill .pulsing {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34a853;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+.hero-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f7f2 100%);
+}
+.hero-section .hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-section .pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background-color: #e6f4ea;
+  color: #34a853;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.hero-section .hero-title {
+  font-family: "Google Sans", sans-serif;
+  font-size: 3rem;
+  line-height: 1.2;
+  color: #202124;
+}
+.hero-section .hero-title .gradient-text {
+  background: linear-gradient(90deg, #1a73e8, #34a853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-section .hero-description {
+  font-size: 1.1rem;
+  color: #60676b;
+  margin: 20px 0 32px 0;
+}
+.hero-section .hero-cta-group {
+  display: flex;
+  gap: 16px;
+}
+
+.pillars-section {
+  padding: 80px 0;
+  background: #f8f7f2;
+}
+.pillars-section .pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.pillars-section .pillar-card {
+  position: relative;
+  overflow: hidden;
+}
+.pillars-section .pillar-card .card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+.pillars-section .pillar-card .card-icon .material-symbols-outlined {
+  font-size: 24px;
+}
+.pillars-section .pillar-card.blue .card-icon {
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+.pillars-section .pillar-card.green .card-icon {
+  background: #e6f4ea;
+  color: #34a853;
+}
+.pillars-section .pillar-card.amber .card-icon {
+  background: #fef7e0;
+  color: #fbbc04;
+}
+.pillars-section .pillar-card .pillar-img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pillars-section .pillar-card .pillar-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+.pillars-section .pillar-card h3 {
+  font-family: "Google Sans", sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #202124;
+}
+.pillars-section .pillar-card p {
+  font-size: 0.95rem;
+  color: #545a5e;
+  line-height: 1.6;
+}
+
+.products-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+.products-section .products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+.products-section .product-card .product-img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.products-section .product-card .product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+.products-section .product-card h3 {
+  font-family: "Google Sans", sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #202124;
+}
+.products-section .product-card p {
+  font-size: 0.9rem;
+  color: #545a5e;
+  line-height: 1.6;
+}
+
+.contact-section {
+  padding: 80px 0;
+  background: #f8f7f2;
+}
+.contact-section .form-card {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.contact-section .form-card .form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.contact-section .form-card .form-header h2 {
+  font-family: "Google Sans", sans-serif;
+  font-size: 1.8rem;
+  color: #202124;
+  margin-bottom: 8px;
+}
+.contact-section .form-card .form-header p {
+  color: #60676b;
+}
+.contact-section .form-card .full-width {
+  width: 100%;
+}
+
+.iot-section .iot-bg-image {
+  margin: 32px 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.iot-section .iot-bg-image .iot-bg-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+
+.iot-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+.iot-dashboard-grid .telemetry-card .telemetry-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6c7379;
+  font-size: 0.9rem;
+}
+.iot-dashboard-grid .telemetry-card .telemetry-value {
+  font-family: "Google Sans", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #202124;
+  margin: 12px 0;
+}
+.iot-dashboard-grid .telemetry-card .telemetry-value small {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c7379;
+}
+.iot-dashboard-grid .telemetry-card .status-indicator {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.iot-dashboard-grid .telemetry-card .status-indicator.good {
+  background-color: #e6f4ea;
+  color: #34a853;
+}
+
+.g-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.g-form .input-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+.g-form .input-group input, .g-form .input-group select, .g-form .input-group textarea {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.g-form .input-group input:focus, .g-form .input-group select:focus, .g-form .input-group textarea:focus {
+  border-color: #1a73e8;
+}
+.g-form .input-group label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  color: #868d92;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  padding: 0 4px;
+}
+.g-form .input-group input:focus ~ label, .g-form .input-group input:not(:placeholder-shown) ~ label,
+.g-form .input-group textarea:focus ~ label, .g-form .input-group textarea:not(:placeholder-shown) ~ label {
+  top: -10px;
+  font-size: 0.75rem;
+  color: #1a73e8;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25D366;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: whatsapp-bounce 2s infinite;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
+}
+.whatsapp-float .whatsapp-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.whatsapp-option-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.whatsapp-dropdown {
+  position: fixed;
+  bottom: 94px;
+  right: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  z-index: 9998;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+.whatsapp-dropdown .whatsapp-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #3c4043;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.whatsapp-dropdown .whatsapp-option:hover {
+  background: #e6f4ea;
+  color: #34a853;
+}
+
+.whatsapp-float:hover + .whatsapp-dropdown,
+.whatsapp-dropdown:hover {
+  display: flex;
+}
+
+@keyframes whatsapp-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@media (max-width: 768px) {
+  .hero-section .hero-container {
+    grid-template-columns: 1fr;
+  }
+  .visual-card .hero-svg {
+    height: 250px;
+  }
+  .about-section .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .g-form .form-row {
+    grid-template-columns: 1fr;
+  }
+  .g-footer .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
+.about-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+.about-section .about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-section .badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e6f4ea;
+  color: #34a853;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.about-section .about-text {
+  font-size: 1rem;
+  color: #545a5e;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+.about-section .about-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  text-align: center;
+}
+.about-section .about-card .stat-item .stat-number {
+  font-family: "Google Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a73e8;
+  line-height: 1.2;
+}
+.about-section .about-card .stat-item .stat-label {
+  font-size: 0.85rem;
+  color: #6c7379;
+  margin-top: 4px;
+}
+
+.impact-section {
+  padding: 80px 0;
+  background: #f8f7f2;
+}
+.impact-section .section-header .badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.impact-section .impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.impact-section .impact-card {
+  text-align: center;
+}
+.impact-section .impact-card .card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e6f4ea;
+  color: #34a853;
+  margin-bottom: 16px;
+}
+.impact-section .impact-card h3 {
+  font-family: "Google Sans", sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #202124;
+}
+.impact-section .impact-card p {
+  font-size: 0.95rem;
+  color: #545a5e;
+  margin-bottom: 16px;
+}
+.impact-section .impact-card .impact-metric {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.founders-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+.founders-section .section-header .badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.founders-section .founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.founders-section .founder-card {
+  text-align: center;
+  padding: 32px 24px;
+}
+.founders-section .founder-card .founder-img {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 16px auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.founders-section .founder-card .founder-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.founders-section .founder-card h3 {
+  font-family: "Google Sans", sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: #202124;
+}
+.founders-section .founder-card p {
+  font-size: 0.9rem;
+  color: #60676b;
+}
+
+.g-footer {
+  background-color: #202124;
+  color: #b7b9bf;
+  padding: 64px 0 32px 0;
+}
+.g-footer .footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.g-footer h3, .g-footer h4 {
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+.g-footer ul {
+  list-style: none;
+  padding: 0;
+}
+.g-footer ul li {
+  margin-bottom: 10px;
+}
+.g-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.g-footer a:hover {
+  color: #1a73e8;
+}
+.g-footer .footer-bottom {
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+.g-footer .footer-bottom .placeholder-note {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #3c4043;
+  background-color: #f8f7f2;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  margin-bottom: 48px;
+}
+.section-header.center {
+  text-align: center;
+}
+.section-header h2 {
+  font-family: "Google Sans", sans-serif;
+  font-size: 2.2rem;
+  color: #202124;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.theme-toggle-btn .material-symbols-outlined {
+  font-size: 24px;
+  color: #3c4043;
+}
+.theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme=dark] body {
+  background-color: #1a1a2e;
+  color: #e4e6eb;
+}
+[data-theme=dark] .g-navbar {
+  background-color: rgba(30, 30, 30, 0.95);
+  border-bottom-color: #3a3b3c;
+}
+[data-theme=dark] .g-navbar .brand-logo .logo-text {
+  color: #e4e6eb;
+}
+[data-theme=dark] .g-navbar .nav-menu .nav-link {
+  color: #e4e6eb;
+}
+[data-theme=dark] .g-navbar .nav-menu .nav-link:hover, [data-theme=dark] .g-navbar .nav-menu .nav-link.active {
+  background-color: rgba(26, 115, 232, 0.2);
+  color: #1a73e8;
+}
+[data-theme=dark] .theme-toggle-btn .material-symbols-outlined {
+  color: #e4e6eb;
+}
+[data-theme=dark] .theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+[data-theme=dark] .hero-section {
+  background: linear-gradient(180deg, #1e1e1e 0%, #1a1a2e 100%);
+}
+[data-theme=dark] .hero-section .hero-title {
+  color: #e4e6eb;
+}
+[data-theme=dark] .hero-section .hero-description {
+  color: #b0b3b8;
+}
+[data-theme=dark] .hero-section .visual-card {
+  background: #0f3460;
+  border-color: #3a3b3c;
+}
+[data-theme=dark] .hero-section .visual-card .floating-pill {
+  background: rgba(30, 30, 30, 0.95);
+  color: #34a853;
+}
+[data-theme=dark] .g-card {
+  background: #0f3460;
+  border-color: #3a3b3c;
+}
+[data-theme=dark] .pillars-section {
+  background: #1a1a2e;
+}
+[data-theme=dark] .pillars-section .pillar-card h3 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .pillars-section .pillar-card p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .products-section {
+  background: #1e1e1e;
+}
+[data-theme=dark] .products-section .product-card h3 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .products-section .product-card p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .iot-section {
+  background: #1a1a2e;
+}
+[data-theme=dark] .iot-dashboard-grid .telemetry-card .telemetry-header {
+  color: #b0b3b8;
+}
+[data-theme=dark] .iot-dashboard-grid .telemetry-card .telemetry-value {
+  color: #e4e6eb;
+}
+[data-theme=dark] .iot-dashboard-grid .telemetry-card .telemetry-value small {
+  color: #b0b3b8;
+}
+[data-theme=dark] .impact-section {
+  background: #1a1a2e;
+}
+[data-theme=dark] .impact-section .impact-card h3 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .impact-section .impact-card p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .founders-section {
+  background: #1e1e1e;
+}
+[data-theme=dark] .founders-section .founder-card h3 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .founders-section .founder-card p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .about-section {
+  background: #1e1e1e;
+}
+[data-theme=dark] .about-section .about-text {
+  color: #b0b3b8;
+}
+[data-theme=dark] .about-section .about-card .stat-item .stat-label {
+  color: #b0b3b8;
+}
+[data-theme=dark] .section-header h2 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .section-header p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .contact-section {
+  background: #1a1a2e;
+}
+[data-theme=dark] .contact-section .form-card .form-header h2 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .contact-section .form-card .form-header p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .g-form .input-group input, [data-theme=dark] .g-form .input-group select, [data-theme=dark] .g-form .input-group textarea {
+  background: #1e1e1e;
+  border-color: #3a3b3c;
+  color: #e4e6eb;
+}
+[data-theme=dark] .g-form .input-group input:focus, [data-theme=dark] .g-form .input-group select:focus, [data-theme=dark] .g-form .input-group textarea:focus {
+  border-color: #1a73e8;
+}
+[data-theme=dark] .g-form .input-group label {
+  background: #1e1e1e;
+  color: #b0b3b8;
+}
+[data-theme=dark] .g-footer {
+  background: #1e1e1e;
+  border-top-color: #3a3b3c;
+}
+[data-theme=dark] .g-footer .footer-col h3, [data-theme=dark] .g-footer .footer-col h4 {
+  color: #e4e6eb;
+}
+[data-theme=dark] .g-footer .footer-col p, [data-theme=dark] .g-footer .footer-col li {
+  color: #b0b3b8;
+}
+[data-theme=dark] .g-footer .footer-col a {
+  color: #b0b3b8;
+}
+[data-theme=dark] .g-footer .footer-col a:hover {
+  color: #1a73e8;
+}
+[data-theme=dark] .g-footer .footer-bottom {
+  border-top-color: #3a3b3c;
+}
+[data-theme=dark] .g-footer .footer-bottom p {
+  color: #b0b3b8;
+}
+[data-theme=dark] .whatsapp-dropdown {
+  background: #0f3460;
+  border-color: #3a3b3c;
+}
+[data-theme=dark] .whatsapp-dropdown .whatsapp-option {
+  color: #e4e6eb;
+}
+[data-theme=dark] .whatsapp-dropdown .whatsapp-option:hover {
+  background: rgba(52, 168, 83, 0.2);
+  color: #34a853;
+}
+[data-theme=dark] .g-btn-outlined {
+  border-color: #3a3b3c;
+  color: #e4e6eb;
+}
+[data-theme=dark] .g-btn-outlined:hover {
+  background: rgba(255, 255, 255, 0.08);
+}

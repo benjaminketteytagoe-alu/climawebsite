@@ -1,0 +1,69 @@
+@use 'variables' as *;
+@use 'sass:color';
+
+// Material Expressive Buttons
+.g-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-family: $font-google-sans;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+
+  &-primary {
+    background-color: $g-blue-primary;
+    color: $g-white;
+
+    &:hover {
+      background-color: $g-blue-hover;
+      box-shadow: $shadow-1;
+    }
+  }
+
+  &-accent {
+    background-color: $g-green-primary;
+    color: $g-white;
+
+    &:hover {
+      background-color: color.adjust($g-green-primary, $lightness: -5%);
+      box-shadow: $shadow-1;
+    }
+  }
+
+  &-outlined {
+    background-color: transparent;
+    border: 1px solid $g-border-color;
+    color: $g-dark-text;
+
+    &:hover {
+      background-color: rgba(0,0,0,0.04);
+    }
+  }
+}
+
+// Cards
+.g-card {
+  background: $g-white;
+  border-radius: $radius-md;
+  padding: 24px;
+  border: 1px solid $g-border-color;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: $shadow-2;
+    transform: translateY(-2px);
+  }
+}
+
+// Floating Ripple Effect
+.ripple {
+  position: relative;
+  overflow: hidden;
+}

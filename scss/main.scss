@@ -1,0 +1,321 @@
+@use 'variables';
+@use 'components';
+@use 'sections';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: variables.$font-roboto;
+  color: variables.$g-dark-text;
+  background-color: variables.$g-light-bg;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  margin-bottom: 48px;
+
+  &.center {
+    text-align: center;
+  }
+
+  h2 {
+    font-family: variables.$font-google-sans;
+    font-size: 2.2rem;
+    color: variables.$g-dark-surface;
+  }
+}
+
+// Nav actions layout
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+// Theme Toggle Button
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+
+  .material-symbols-outlined {
+    font-size: 24px;
+    color: variables.$g-dark-text;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+
+// =====================
+// Dark Mode Styles
+// =====================
+[data-theme="dark"] {
+  body {
+    background-color: variables.$dt-bg-primary;
+    color: variables.$dt-text-primary;
+  }
+
+  // Navbar
+  .g-navbar {
+    background-color: variables.$dt-navbar-bg;
+    border-bottom-color: variables.$dt-border-color;
+
+    .brand-logo {
+      .logo-text {
+        color: variables.$dt-text-primary;
+      }
+    }
+
+    .nav-menu .nav-link {
+      color: variables.$dt-text-primary;
+
+      &:hover, &.active {
+        background-color: rgba(26, 115, 232, 0.2);
+        color: variables.$g-blue-primary;
+      }
+    }
+  }
+
+  // Theme toggle button
+  .theme-toggle-btn {
+    .material-symbols-outlined {
+      color: variables.$dt-text-primary;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  // Hero Section
+  .hero-section {
+    background: linear-gradient(180deg, variables.$dt-white 0%, variables.$dt-bg-primary 100%);
+
+    .hero-title {
+      color: variables.$dt-text-primary;
+    }
+
+    .hero-description {
+      color: variables.$dt-text-secondary;
+    }
+
+    .visual-card {
+      background: variables.$dt-bg-card;
+      border-color: variables.$dt-border-color;
+
+      .floating-pill {
+        background: rgba(30, 30, 30, 0.95);
+        color: variables.$g-green-primary;
+      }
+    }
+  }
+
+  // Cards (global)
+  .g-card {
+    background: variables.$dt-bg-card;
+    border-color: variables.$dt-border-color;
+  }
+
+  // Pillars Section
+  .pillars-section {
+    background: variables.$dt-bg-primary;
+
+    .pillar-card h3 {
+      color: variables.$dt-text-primary;
+    }
+
+    .pillar-card p {
+      color: variables.$dt-text-secondary;
+    }
+  }
+
+  // Products Section
+  .products-section {
+    background: variables.$dt-white;
+
+    .product-card h3 {
+      color: variables.$dt-text-primary;
+    }
+
+    .product-card p {
+      color: variables.$dt-text-secondary;
+    }
+  }
+
+  // IoT Section
+  .iot-section {
+    background: variables.$dt-bg-primary;
+  }
+
+  .iot-dashboard-grid .telemetry-card {
+    .telemetry-header {
+      color: variables.$dt-text-secondary;
+    }
+
+    .telemetry-value {
+      color: variables.$dt-text-primary;
+
+      small {
+        color: variables.$dt-text-secondary;
+      }
+    }
+  }
+
+  // Impact Section
+  .impact-section {
+    background: variables.$dt-bg-primary;
+
+    .impact-card h3 {
+      color: variables.$dt-text-primary;
+    }
+
+    .impact-card p {
+      color: variables.$dt-text-secondary;
+    }
+  }
+
+  // Founders Section
+  .founders-section {
+    background: variables.$dt-white;
+
+    .founder-card h3 {
+      color: variables.$dt-text-primary;
+    }
+
+    .founder-card p {
+      color: variables.$dt-text-secondary;
+    }
+  }
+
+  // About Section
+  .about-section {
+    background: variables.$dt-white;
+
+    .about-text {
+      color: variables.$dt-text-secondary;
+    }
+
+    .about-card .stat-item .stat-label {
+      color: variables.$dt-text-secondary;
+    }
+  }
+
+  // Section headers
+  .section-header {
+    h2 {
+      color: variables.$dt-text-primary;
+    }
+
+    p {
+      color: variables.$dt-text-secondary;
+    }
+  }
+
+  // Contact Section
+  .contact-section {
+    background: variables.$dt-bg-primary;
+
+    .form-card .form-header {
+      h2 {
+        color: variables.$dt-text-primary;
+      }
+
+      p {
+        color: variables.$dt-text-secondary;
+      }
+    }
+  }
+
+  // Form inputs
+  .g-form {
+    .input-group {
+      input, select, textarea {
+        background: variables.$dt-white;
+        border-color: variables.$dt-border-color;
+        color: variables.$dt-text-primary;
+
+        &:focus {
+          border-color: variables.$g-blue-primary;
+        }
+      }
+
+      label {
+        background: variables.$dt-white;
+        color: variables.$dt-text-secondary;
+      }
+    }
+  }
+
+  // Footer
+  .g-footer {
+    background: variables.$dt-white;
+    border-top-color: variables.$dt-border-color;
+
+    .footer-col h3, .footer-col h4 {
+      color: variables.$dt-text-primary;
+    }
+
+    .footer-col p, .footer-col li {
+      color: variables.$dt-text-secondary;
+    }
+
+    .footer-col a {
+      color: variables.$dt-text-secondary;
+
+      &:hover {
+        color: variables.$g-blue-primary;
+      }
+    }
+
+    .footer-bottom {
+      border-top-color: variables.$dt-border-color;
+
+      p {
+        color: variables.$dt-text-secondary;
+      }
+    }
+  }
+
+  // WhatsApp dropdown
+  .whatsapp-dropdown {
+    background: variables.$dt-bg-card;
+    border-color: variables.$dt-border-color;
+
+    .whatsapp-option {
+      color: variables.$dt-text-primary;
+
+      &:hover {
+        background: rgba(52, 168, 83, 0.2);
+        color: variables.$g-green-primary;
+      }
+    }
+  }
+
+  // Buttons
+  .g-btn-outlined {
+    border-color: variables.$dt-border-color;
+    color: variables.$dt-text-primary;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
