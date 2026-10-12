@@ -1,6 +1,11 @@
 @use 'variables' as *;
 @use 'sass:color';
 
+// =====================
+// MOBILE-FIRST BASE STYLES
+// Target: 320px+ (small phones)
+// =====================
+
 // Static Navigation Bar
 .g-navbar {
   position: sticky;
@@ -9,12 +14,12 @@
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid $g-border-color;
-  padding: 12px 0;
+  padding: 10px 0;
 
   .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,16 +30,17 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
+    flex-shrink: 0;
 
     .logo-img {
-      height: 40px;
+      height: 32px;
       width: auto;
       border-radius: 4px;
     }
 
     .logo-text {
       font-family: $font-google-sans;
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: $g-dark-surface;
 
@@ -44,24 +50,149 @@
     }
   }
 
+  // Hamburger button - visible on mobile by default
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+    order: 3;
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: $g-dark-surface;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+
+  // Mobile nav drawer - hidden by default, slides in when open
+  .nav-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    flex-direction: column;
+    background: $g-white;
+    padding: 80px 24px 24px;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1050;
+    align-items: stretch;
+    gap: 16px;
+    overflow-y: auto;
+    display: none;
+
+    &.open {
+      right: 0;
+      display: flex;
+    }
+  }
+
   .nav-menu {
     display: flex;
-    gap: 24px;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
 
     .nav-link {
       text-decoration: none;
       color: $g-dark-text;
       font-weight: 500;
-      font-size: 0.95rem;
-      padding: 8px 12px;
+      font-size: 1rem;
+      padding: 12px 16px;
       border-radius: $radius-sm;
       transition: background 0.2s ease;
+      display: block;
 
       &:hover, &.active {
         background-color: $g-blue-light;
         color: $g-blue-primary;
       }
     }
+  }
+
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid $g-border-color;
+
+    .theme-toggle-btn {
+      align-self: flex-start;
+    }
+
+    .g-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// Mobile overlay
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+
+  &.active {
+    display: block;
+  }
+}
+
+// Container - mobile base
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+// Section headers - mobile base
+.section-header {
+  margin-bottom: 24px;
+
+  &.center {
+    text-align: center;
+  }
+
+  h2 {
+    font-family: $font-google-sans;
+    font-size: 1.6rem;
+    color: $g-dark-surface;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: color.adjust($g-dark-text, $lightness: 15%);
+    margin-top: 8px;
   }
 }
 
@@ -74,7 +205,7 @@
 
   .hero-svg {
     width: 100%;
-    height: 350px;
+    height: 200px;
     object-fit: cover;
     display: block;
     border-radius: $radius-md;
@@ -82,17 +213,17 @@
 
   .floating-pill {
     position: absolute;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 6px;
+    padding: 6px 12px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: $g-green-primary;
     box-shadow: $shadow-1;
@@ -103,6 +234,7 @@
       border-radius: 50%;
       background: $g-green-primary;
       animation: pulse 2s infinite;
+      flex-shrink: 0;
     }
   }
 }
@@ -112,18 +244,18 @@
   50% { opacity: 0.4; }
 }
 
-// Modern Hero
+// Hero Section - mobile base
 .hero-section {
-  padding: 80px 0;
+  padding: 40px 0;
   background: linear-gradient(180deg, $g-white 0%, $g-light-bg 100%);
 
   .hero-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 1fr;
+    gap: 24px;
     align-items: center;
   }
 
@@ -131,18 +263,18 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 16px;
+    padding: 6px 12px;
     background-color: $g-green-light;
     color: $g-green-primary;
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .hero-title {
     font-family: $font-google-sans;
-    font-size: 3rem;
+    font-size: 1.8rem;
     line-height: 1.2;
     color: $g-dark-surface;
 
@@ -154,26 +286,87 @@
   }
 
   .hero-description {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: color.adjust($g-dark-text, $lightness: 15%);
-    margin: 20px 0 32px 0;
+    margin: 12px 0 20px 0;
+    line-height: 1.6;
   }
 
   .hero-cta-group {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    gap: 10px;
+
+    .g-btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }
 
-// Pillars Section
+// About Section - mobile base
+.about-section {
+  padding: 40px 0;
+  background: $g-white;
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: $g-green-light;
+    color: $g-green-primary;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+    color: color.adjust($g-dark-text, $lightness: 10%);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  .about-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: center;
+
+    .stat-item {
+      .stat-number {
+        font-family: $font-google-sans;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $g-blue-primary;
+        line-height: 1.2;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: color.adjust($g-dark-text, $lightness: 20%);
+        margin-top: 4px;
+      }
+    }
+  }
+}
+
+// Pillars Section - mobile base
 .pillars-section {
-  padding: 80px 0;
+  padding: 40px 0;
   background: $g-light-bg;
 
   .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .pillar-card {
@@ -184,13 +377,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
 
       .material-symbols-outlined {
-        font-size: 24px;
+        font-size: 22px;
       }
     }
 
@@ -211,51 +404,8 @@
 
     .pillar-img {
       width: 100%;
-      height: 200px;
-      margin-bottom: 16px;
-      border-radius: $radius-sm;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: $radius-sm;
-      }
-    }
-
-    h3 {
-      font-family: $font-google-sans;
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: $g-dark-surface;
-    }
-
-    p {
-      font-size: 0.95rem;
-      color: color.adjust($g-dark-text, $lightness: 10%);
-      line-height: 1.6;
-    }
-  }
-}
-
-// Products Section
-.products-section {
-  padding: 80px 0;
-  background: $g-white;
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-  }
-
-  .product-card {
-    .product-img {
-      width: 100%;
-      height: 200px;
-      margin-bottom: 16px;
+      height: 180px;
+      margin-bottom: 12px;
       border-radius: $radius-sm;
       overflow: hidden;
 
@@ -271,7 +421,7 @@
     h3 {
       font-family: $font-google-sans;
       font-size: 1.1rem;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: $g-dark-surface;
     }
 
@@ -283,10 +433,239 @@
   }
 }
 
-// Contact Section
-.contact-section {
-  padding: 80px 0;
+// IoT Section - mobile base
+.iot-section {
+  padding: 40px 0;
+  background: $g-white;
+
+  .iot-bg-image {
+    margin: 24px 0;
+    border-radius: $radius-md;
+    overflow: hidden;
+
+    .iot-bg-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      display: block;
+      border-radius: $radius-md;
+    }
+  }
+}
+
+.iot-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 24px;
+
+  .telemetry-card {
+    .telemetry-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: color.adjust($g-dark-text, $lightness: 20%);
+      font-size: 0.85rem;
+    }
+
+    .telemetry-value {
+      font-family: $font-google-sans;
+      font-size: 2rem;
+      font-weight: 700;
+      color: $g-dark-surface;
+      margin: 10px 0;
+
+      small {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: color.adjust($g-dark-text, $lightness: 20%);
+      }
+    }
+
+    .status-indicator {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+
+      &.good {
+        background-color: $g-green-light;
+        color: $g-green-primary;
+      }
+    }
+  }
+}
+
+// Products Section - mobile base
+.products-section {
+  padding: 40px 0;
   background: $g-light-bg;
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .product-card {
+    .product-img {
+      width: 100%;
+      height: 180px;
+      margin-bottom: 12px;
+      border-radius: $radius-sm;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: $radius-sm;
+      }
+    }
+
+    h3 {
+      font-family: $font-google-sans;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: $g-dark-surface;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: color.adjust($g-dark-text, $lightness: 10%);
+      line-height: 1.6;
+    }
+  }
+}
+
+// Impact Section - mobile base
+.impact-section {
+  padding: 40px 0;
+  background: $g-white;
+
+  .section-header {
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: $g-blue-light;
+      color: $g-blue-primary;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .impact-card {
+    text-align: center;
+
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: $g-green-light;
+      color: $g-green-primary;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-family: $font-google-sans;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: $g-dark-surface;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: color.adjust($g-dark-text, $lightness: 10%);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .impact-metric {
+      display: inline-block;
+      padding: 6px 12px;
+      background: $g-blue-light;
+      color: $g-blue-primary;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+}
+
+// Founders Section - mobile base
+.founders-section {
+  padding: 40px 0;
+  background: $g-light-bg;
+
+  .section-header {
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: $g-blue-light;
+      color: $g-blue-primary;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+  }
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .founder-card {
+    text-align: center;
+    padding: 24px 16px;
+
+    .founder-img {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 12px auto;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    h3 {
+      font-family: $font-google-sans;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: $g-dark-surface;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: color.adjust($g-dark-text, $lightness: 15%);
+    }
+  }
+}
+
+// Contact Section - mobile base
+.contact-section {
+  padding: 40px 0;
+  background: $g-white;
 
   .form-card {
     max-width: 700px;
@@ -294,16 +673,17 @@
 
     .form-header {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
 
       h2 {
         font-family: $font-google-sans;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         color: $g-dark-surface;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
 
       p {
+        font-size: 0.9rem;
         color: color.adjust($g-dark-text, $lightness: 15%);
       }
     }
@@ -314,81 +694,29 @@
   }
 }
 
-// Telemetry Dashboard
-.iot-section {
-  .iot-bg-image {
-    margin: 32px 0;
-    border-radius: $radius-md;
-    overflow: hidden;
-
-    .iot-bg-img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      display: block;
-      border-radius: $radius-md;
-    }
-  }
-}
-
-.iot-dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 32px;
-
-  .telemetry-card {
-    .telemetry-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: color.adjust($g-dark-text, $lightness: 20%);
-      font-size: 0.9rem;
-    }
-
-    .telemetry-value {
-      font-family: $font-google-sans;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: $g-dark-surface;
-      margin: 12px 0;
-
-      small { font-size: 1rem; font-weight: 400; color: color.adjust($g-dark-text, $lightness: 20%); }
-    }
-
-    .status-indicator {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 500;
-
-      &.good { background-color: $g-green-light; color: $g-green-primary; }
-    }
-  }
-}
-
-// Modern Form Inputs
+// Form Inputs - mobile base
 .g-form {
   .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .input-group {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 
     input, select, textarea {
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       border: 1px solid $g-border-color;
       border-radius: $radius-sm;
       font-family: $font-roboto;
       font-size: 1rem;
       outline: none;
       transition: border-color 0.2s ease;
+      background: $g-white;
+      color: $g-dark-text;
 
       &:focus {
         border-color: $g-blue-primary;
@@ -397,13 +725,14 @@
 
     label {
       position: absolute;
-      left: 16px;
-      top: 16px;
+      left: 14px;
+      top: 14px;
       color: color.adjust($g-dark-text, $lightness: 30%);
       pointer-events: none;
       transition: all 0.2s ease;
       background: $g-white;
       padding: 0 4px;
+      font-size: 1rem;
     }
 
     input:focus ~ label, input:not(:placeholder-shown) ~ label,
@@ -415,13 +744,75 @@
   }
 }
 
-// Floating WhatsApp Button
+// Footer - mobile base
+.g-footer {
+  background-color: $g-dark-surface;
+  color: color.adjust($g-dark-surface, $lightness: 60%);
+  padding: 40px 0 24px 0;
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  h3, h4 {
+    color: $g-white;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: $g-blue-primary;
+    }
+  }
+
+  .location-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    font-size: 0.85rem;
+  }
+
+  .footer-bottom {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+
+    .placeholder-note {
+      font-style: italic;
+      opacity: 0.7;
+    }
+  }
+}
+
+// Floating WhatsApp Button - mobile base
 .whatsapp-float {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 60px;
-  height: 60px;
+  bottom: 16px;
+  right: 16px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #25D366;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
@@ -438,22 +829,22 @@
   }
 
   .whatsapp-icon {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
   }
 }
 
 .whatsapp-option-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
 .whatsapp-dropdown {
   position: fixed;
-  bottom: 94px;
-  right: 24px;
+  bottom: 76px;
+  right: 16px;
   background: $g-white;
   border-radius: $radius-md;
   box-shadow: $shadow-3;
@@ -462,16 +853,16 @@
   display: none;
   flex-direction: column;
   gap: 4px;
-  min-width: 200px;
+  min-width: 180px;
 
   .whatsapp-option {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: 10px 12px;
     text-decoration: none;
     color: $g-dark-text;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     border-radius: $radius-sm;
     transition: background 0.2s ease;
@@ -493,231 +884,593 @@
   50% { transform: translateY(-6px); }
 }
 
-// Responsive adjustments
-@media (max-width: 768px) {
-  .hero-section .hero-container {
-    grid-template-columns: 1fr;
+// =====================
+// TABLET BREAKPOINT
+// min-width: 768px (tablets and larger phones in landscape)
+// =====================
+@media (min-width: 768px) {
+
+  // Container
+  .container {
+    padding: 0 24px;
+  }
+
+  // Navbar - still hamburger on small tablets
+  .g-navbar {
+    .nav-right {
+      max-width: 300px;
+    }
+  }
+
+  // Section headers
+  .section-header {
+    margin-bottom: 32px;
+
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  // Hero section
+  .hero-section {
+    padding: 48px 0;
+
+    .hero-container {
+      gap: 32px;
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      margin: 16px 0 24px 0;
+    }
+
+    .hero-cta-group {
+      flex-direction: row;
+      gap: 12px;
+
+      .g-btn {
+        width: auto;
+      }
+    }
   }
 
   .visual-card .hero-svg {
     height: 250px;
   }
 
-  .about-section .about-grid {
-    grid-template-columns: 1fr;
-  }
+  // About section
+  .about-section {
+    padding: 48px 0;
 
-  .g-form .form-row {
-    grid-template-columns: 1fr;
-  }
+    .about-grid {
+      gap: 32px;
+    }
 
-  .g-footer .footer-top {
-    grid-template-columns: 1fr;
-  }
-}
+    .about-card {
+      gap: 20px;
 
-// About Section
-.about-section {
-  padding: 80px 0;
-  background: $g-white;
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 48px;
-    align-items: start;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: $g-green-light;
-    color: $g-green-primary;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-
-  .about-text {
-    font-size: 1rem;
-    color: color.adjust($g-dark-text, $lightness: 10%);
-    margin-bottom: 16px;
-    line-height: 1.7;
-  }
-
-  .about-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    text-align: center;
-
-    .stat-item {
-      .stat-number {
-        font-family: $font-google-sans;
-        font-size: 2rem;
-        font-weight: 700;
-        color: $g-blue-primary;
-        line-height: 1.2;
-      }
-
-      .stat-label {
-        font-size: 0.85rem;
-        color: color.adjust($g-dark-text, $lightness: 20%);
-        margin-top: 4px;
+      .stat-item .stat-number {
+        font-size: 1.8rem;
       }
     }
   }
-}
 
-// Impact Section
-.impact-section {
-  padding: 80px 0;
-  background: $g-light-bg;
+  // Pillars section
+  .pillars-section {
+    padding: 48px 0;
 
-  .section-header {
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: $g-blue-light;
-      color: $g-blue-primary;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 8px;
+    .pillars-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .pillar-card .pillar-img {
+      height: 180px;
     }
   }
 
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+  // IoT section
+  .iot-section {
+    padding: 48px 0;
+
+    .iot-bg-image .iot-bg-img {
+      max-height: 280px;
+    }
   }
 
-  .impact-card {
-    text-align: center;
+  .iot-dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 
-    .card-icon {
-      display: inline-flex;
+  // Products section
+  .products-section {
+    padding: 48px 0;
+
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .product-card .product-img {
+      height: 180px;
+    }
+  }
+
+  // Impact section
+  .impact-section {
+    padding: 48px 0;
+
+    .impact-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  // Founders section
+  .founders-section {
+    padding: 48px 0;
+
+    .founders-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .founder-card .founder-img {
+      width: 130px;
+      height: 130px;
+    }
+  }
+
+  // Contact section
+  .contact-section {
+    padding: 48px 0;
+
+    .form-card .form-header h2 {
+      font-size: 1.6rem;
+    }
+  }
+
+  // Footer
+  .g-footer {
+    padding: 48px 0 28px 0;
+
+    .footer-top {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+  }
+
+  // WhatsApp button
+  .whatsapp-float {
+    width: 56px;
+    height: 56px;
+    bottom: 20px;
+    right: 20px;
+
+    .whatsapp-icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .whatsapp-dropdown {
+    bottom: 86px;
+    right: 20px;
+    min-width: 200px;
+  }
+}
+
+// =====================
+// DESKTOP BREAKPOINT
+// min-width: 1024px (desktops and large tablets)
+// =====================
+@media (min-width: 1024px) {
+
+  // Container
+  .container {
+    padding: 0 32px;
+  }
+
+  // Navbar - horizontal layout, hamburger hidden
+  .g-navbar {
+    padding: 12px 0;
+
+    .nav-container {
+      padding: 0 24px;
+    }
+
+    .brand-logo {
+      .logo-img {
+        height: 36px;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+    }
+
+    .nav-hamburger {
+      display: none;
+      order: unset;
+    }
+
+    .nav-right {
+      position: static;
+      width: auto;
+      max-width: none;
+      height: auto;
+      flex-direction: row;
+      background: none;
+      padding: 0;
+      box-shadow: none;
+      z-index: auto;
       align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: $g-green-light;
-      color: $g-green-primary;
+      gap: 16px;
+      overflow: visible;
+      display: flex;
+    }
+
+    .nav-menu {
+      flex-direction: row;
+      gap: 8px;
+      width: auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        display: inline-block;
+        white-space: nowrap;
+      }
+    }
+
+    .nav-actions {
+      flex-direction: row;
+      width: auto;
+      gap: 8px;
+      padding-top: 0;
+      border-top: none;
+
+      .theme-toggle-btn {
+        align-self: center;
+      }
+
+      .g-btn {
+        width: auto;
+        justify-content: center;
+      }
+    }
+  }
+
+  // Section headers
+  .section-header {
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  // Hero section - two column layout
+  .hero-section {
+    padding: 80px 0;
+
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-size: 2.6rem;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      margin: 20px 0 28px 0;
+    }
+
+    .pill-badge {
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+    }
+
+    .hero-cta-group {
+      gap: 16px;
+    }
+  }
+
+  .visual-card .hero-svg {
+    height: 350px;
+  }
+
+  .visual-card .floating-pill {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+
+  // About section - two column layout
+  .about-section {
+    padding: 80px 0;
+
+    .about-grid {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+    }
+
+    .about-text {
+      font-size: 1rem;
       margin-bottom: 16px;
     }
 
-    h3 {
-      font-family: $font-google-sans;
+    .about-card {
+      gap: 24px;
+
+      .stat-item .stat-number {
+        font-size: 2rem;
+      }
+
+      .stat-item .stat-label {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  // Pillars section
+  .pillars-section {
+    padding: 80px 0;
+
+    .pillars-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pillar-card .card-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+
+      .material-symbols-outlined {
+        font-size: 24px;
+      }
+    }
+
+    .pillar-card .pillar-img {
+      height: 200px;
+      margin-bottom: 16px;
+    }
+
+    .pillar-card h3 {
       font-size: 1.2rem;
       margin-bottom: 8px;
-      color: $g-dark-surface;
     }
 
-    p {
+    .pillar-card p {
       font-size: 0.95rem;
-      color: color.adjust($g-dark-text, $lightness: 10%);
+    }
+  }
+
+  // IoT section
+  .iot-section {
+    padding: 80px 0;
+
+    .iot-bg-image {
+      margin: 32px 0;
+
+      .iot-bg-img {
+        max-height: 400px;
+      }
+    }
+  }
+
+  .iot-dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+
+    .telemetry-card .telemetry-header {
+      font-size: 0.9rem;
+    }
+
+    .telemetry-card .telemetry-value {
+      font-size: 2.2rem;
+      margin: 12px 0;
+    }
+  }
+
+  // Products section
+  .products-section {
+    padding: 80px 0;
+
+    .products-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card .product-img {
+      height: 200px;
       margin-bottom: 16px;
     }
 
-    .impact-metric {
-      display: inline-block;
-      padding: 6px 16px;
-      background: $g-blue-light;
-      color: $g-blue-primary;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-  }
-}
-
-// Founders Section
-.founders-section {
-  padding: 80px 0;
-  background: $g-white;
-
-  .section-header {
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: $g-blue-light;
-      color: $g-blue-primary;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
+    .product-card h3 {
+      font-size: 1.1rem;
       margin-bottom: 8px;
     }
+
+    .product-card p {
+      font-size: 0.9rem;
+    }
   }
 
-  .founders-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+  // Impact section
+  .impact-section {
+    padding: 80px 0;
+
+    .impact-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .impact-card .card-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 16px;
+    }
+
+    .impact-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .impact-card p {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .impact-card .impact-metric {
+      padding: 6px 16px;
+      font-size: 0.8rem;
+    }
   }
 
-  .founder-card {
-    text-align: center;
-    padding: 32px 24px;
+  // Founders section
+  .founders-section {
+    padding: 80px 0;
 
-    .founder-img {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 16px auto;
-      border-radius: 50%;
-      overflow: hidden;
+    .founders-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
+    .founder-card {
+      padding: 32px 24px;
+
+      .founder-img {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 16px;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 0.9rem;
       }
     }
+  }
 
-    h3 {
-      font-family: $font-google-sans;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-      color: $g-dark-surface;
+  // Contact section
+  .contact-section {
+    padding: 80px 0;
+
+    .form-card .form-header {
+      margin-bottom: 32px;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // Form - two column layout
+  .g-form {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    p {
+    .input-group {
+      margin-bottom: 24px;
+
+      input, select, textarea {
+        padding: 16px;
+      }
+
+      label {
+        left: 16px;
+        top: 16px;
+      }
+    }
+  }
+
+  // Footer
+  .g-footer {
+    padding: 64px 0 32px 0;
+
+    .footer-top {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    h3, h4 {
+      margin-bottom: 16px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .footer-bottom {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      font-size: 0.85rem;
+      padding-top: 24px;
+    }
+  }
+
+  // WhatsApp button
+  .whatsapp-float {
+    width: 60px;
+    height: 60px;
+    bottom: 24px;
+    right: 24px;
+
+    .whatsapp-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .whatsapp-dropdown {
+    bottom: 94px;
+    right: 24px;
+    min-width: 200px;
+
+    .whatsapp-option {
+      padding: 10px 16px;
       font-size: 0.9rem;
-      color: color.adjust($g-dark-text, $lightness: 15%);
     }
   }
-}
 
-// Footer
-.g-footer {
-  background-color: $g-dark-surface;
-  color: color.adjust($g-dark-surface, $lightness: 60%);
-  padding: 64px 0 32px 0;
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  h3, h4 { color: $g-white; margin-bottom: 16px; }
-  ul { list-style: none; padding: 0; li { margin-bottom: 10px; } }
-  a { color: inherit; text-decoration: none; &:hover { color: $g-blue-primary; } }
-
-  .footer-bottom {
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-
-    .placeholder-note {
-      font-style: italic;
-      opacity: 0.7;
-    }
+  .whatsapp-option-icon {
+    width: 24px;
+    height: 24px;
   }
 }

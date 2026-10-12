@@ -15,27 +15,7 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.section-header {
-  margin-bottom: 48px;
-
-  &.center {
-    text-align: center;
-  }
-
-  h2 {
-    font-family: variables.$font-google-sans;
-    font-size: 2.2rem;
-    color: variables.$g-dark-surface;
-  }
-}
-
-// Nav actions layout
+// Nav actions layout (desktop - overridden in _sections.scss for mobile)
 .nav-actions {
   display: flex;
   align-items: center;
@@ -84,6 +64,20 @@ body {
       }
     }
 
+    .nav-hamburger {
+      span {
+        background-color: variables.$dt-text-primary;
+      }
+    }
+
+    .nav-right {
+      background: variables.$dt-navbar-bg;
+
+      &.open {
+        background: variables.$dt-navbar-bg;
+      }
+    }
+
     .nav-menu .nav-link {
       color: variables.$dt-text-primary;
 
@@ -91,6 +85,10 @@ body {
         background-color: rgba(26, 115, 232, 0.2);
         color: variables.$g-blue-primary;
       }
+    }
+
+    .nav-actions {
+      border-color: variables.$dt-border-color;
     }
   }
 
