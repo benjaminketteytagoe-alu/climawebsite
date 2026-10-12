@@ -91,10 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navOverlay.addEventListener('click', closeMobileMenu);
     }
 
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-
     // Close mobile menu on window resize to desktop
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 1024) {
@@ -103,13 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =====================
-    // Smooth scroll for nav links
+    // Smooth scroll for all anchor links (coordinated with mobile menu close)
     // =====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
             if (target) {
+                // On mobile, close the menu after a short delay so scroll is visible
+                const isMobileLink = anchor.closest('.nav-menu') && window.innerWidth < 1024;
+                if (isMobileLink) {
+                    // Start closing the menu immediately for smooth UX
+                    closeMobileMenu();
+                }
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'

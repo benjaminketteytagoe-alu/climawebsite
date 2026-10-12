@@ -196,6 +196,11 @@
   }
 }
 
+// Scroll margin for all sections with IDs (offset for sticky navbar)
+section[id] {
+  scroll-margin-top: 60px;
+}
+
 // Hero visual card
 .visual-card {
   position: relative;

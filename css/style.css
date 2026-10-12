@@ -217,6 +217,10 @@
   margin-top: 8px;
 }
 
+section[id] {
+  scroll-margin-top: 60px;
+}
+
 .visual-card {
   position: relative;
   overflow: hidden;
