@@ -105,18 +105,23 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
+            if (!targetId || targetId === '#') return;
             const target = document.querySelector(targetId);
-            if (target) {
-                // On mobile, close the menu after a short delay so scroll is visible
-                const isMobileLink = anchor.closest('.nav-menu') && window.innerWidth < 1024;
-                if (isMobileLink) {
-                    // Start closing the menu immediately for smooth UX
-                    closeMobileMenu();
-                }
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            if (!target) return;
+
+            const isMobileLink = this.closest('.nav-menu') && window.innerWidth < 1024;
+
+            if (isMobileLink) {
+                // Close menu first, then scroll after a short delay so the drawer is fully hidden
+                closeMobileMenu();
+                setTimeout(() => {
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 60;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                }, 300);
+            } else {
+                // Desktop: scroll immediately
+                const top = target.getBoundingClientRect().top + window.pageYOffset - 60;
+                window.scrollTo({ top: top, behavior: 'smooth' });
             }
         });
     });
